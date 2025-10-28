@@ -98,10 +98,10 @@ export function Projects({ onOpenProject }: ProjectsProps) {
   return (
     <section
       ref={sectionRef}
-      className="max-w-7xl mx-auto px-4 py-16 overflow-hidden"
+      className="w-[90%] mx-auto px-4 py-16 overflow-hidden"
       id="projects"
     >
-      <h2 className="text-4xl font-extrabold text-gray-900 mb-4">Projects</h2>
+      <h2 className="text-4xl font-extrabold text-[#53ADE3] mb-4">Projects</h2>
 
       <div
         className="w-full sm:w-[100%] mb-10 leading-relaxed select-none"

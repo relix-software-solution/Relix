@@ -5,6 +5,7 @@ import image1 from "../../assets/S1.webp";
 import image2 from "../../assets/S2.webp";
 import image3 from "../../assets/S3.webp";
 import image4 from "../../assets/S4.webp";
+import bg from "../../assets/bg.png";
 
 // أمثلة لشعارات الأدوات (استبدلها بصورك)
 import tsLogo from "../../assets/Icons/ts.svg";
@@ -49,8 +50,8 @@ const ServiceRow: FC<{ service: Service }> = ({ service }) => {
   const handleMouseMove = (e: MouseEvent<HTMLDivElement>) => {
     if (!isDesktop) return; // ما يعمل شي إلا بالديسكتوب
     setImgPos({
-      x: e.clientX - imgWidth / 2,
-      y: e.clientY - imgHeight / 2,
+      x: e.clientX + 10, // تبقى بالوسط أفقياً
+      y: e.clientY + 10, // تحت الماوس بـ 10px (تقدر تزيد أو تنقص)
     });
   };
 
@@ -72,11 +73,11 @@ const ServiceRow: FC<{ service: Service }> = ({ service }) => {
       >
         <div className="text-xl font-bold min-w-[40px]">{service.id}</div>
         <div className="flex flex-col w-1/4">
-          <div className="text-2xl font-semibold text-gray-900">
+          <div className="text-2xl font-semibold text-white">
             {service.title}
           </div>
         </div>
-        <div className="text-sm text-white-600 w-1/4 hidden sm:block">
+        <div className="text-sm text-white-600 w-1/4 hidden sm:block font-sans">
           <div>{service.desc}</div>
           <div className="absolute bottom-10 right-5 z-30">
             <svg
@@ -168,73 +169,92 @@ const Services: FC = () => {
   ];
 
   return (
-    <section className="max-w-7xl mx-auto px-4 py-16" id="services">
-      <motion.div className="flex flex-col sm:flex-row justify-between mb-12">
-        <motion.h2
-          className="text-4xl font-bold text-gray-900 mr-6"
-          initial={{ opacity: 0, x: -50 }}
-          whileInView={{
-            opacity: 1,
-            x: 0,
-            transition: { duration: 0.6, ease: "easeOut" },
-          }}
-          viewport={{ once: false }}
-        >
-          Services
-        </motion.h2>
+    <div className="relative min-h-screen w-full overflow-hidden">
+      {/* الخلفية فقط */}
+      <div
+        style={{
+          backgroundImage: `url(${bg})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+          filter: "blur(8px) brightness(0.6)", // تمويه + تخفيف إضاءة
+          opacity: 0.8, // خفف الشفافية شوي
+        }}
+        className="absolute inset-0"
+      />
 
-        <motion.div
-          className="max-w-lg flex-grow text-left"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: false }}
-          variants={containerVariants}
-        >
-          {`We offer a wide range of digital services tailored to help your business thrive.`
-            .split(". ")
-            .map((line, i) => (
-              <motion.p
-                key={i}
-                className="leading-relaxed text-2xl sm:text-3xl mb-2"
-                variants={textVariants}
-              >
-                {line}.
-              </motion.p>
-            ))}
+      {/* المحتوى فوق الخلفية */}
+      <section
+        className="relative z-10 w-[90%] mx-auto px-4 py-16 text-white"
+        id="services"
+      >
+        <motion.div className="flex flex-col sm:flex-row justify-between mb-12">
+          <motion.h2
+            className="text-4xl font-bold text-white mr-6"
+            initial={{ opacity: 0, x: -50 }}
+            whileInView={{
+              opacity: 1,
+              x: 0,
+              transition: { duration: 0.6, ease: "easeOut" },
+            }}
+            viewport={{ once: false }}
+          >
+            Services
+          </motion.h2>
+
+          <motion.div
+            className="max-w-lg flex-grow text-left"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: false }}
+            variants={containerVariants}
+          >
+            {`We offer a wide range of digital services tailored to help your business thrive.`
+              .split(". ")
+              .map((line, i) => (
+                <motion.p
+                  key={i}
+                  className="leading-relaxed text-2xl sm:text-3xl mb-2 "
+                  variants={textVariants}
+                >
+                  {line}.
+                </motion.p>
+              ))}
+          </motion.div>
         </motion.div>
-      </motion.div>
 
-      <div className="flex flex-col space-y-4">
-        {services.map((service) => (
-          <ServiceRow key={service.id} service={service} />
-        ))}
-      </div>
-
-      {/* شريط الأدوات أسفل الخدمات */}
-      <div className="overflow-hidden mt-16 py-6">
-        <motion.div
-          className="flex gap-16"
-          animate={{
-            x: ["0%", "-50%"], // أو ممكن  "-100%" إذا حابب يروح كل المسافة
-          }}
-          transition={{
-            duration: 100,
-            ease: "linear",
-            repeat: Infinity,
-          }}
-          style={{ width: "max-content" }}
-        >
-          {[...tools, ...tools].map((tool, idx) => (
-            <img
-              key={idx}
-              src={tool.src}
-              alt={tool.alt}
-              className="h-16 w-auto object-contain filter brightness-0 invert"
-            />
+        <div className="flex flex-col">
+          {services.map((service) => (
+            <ServiceRow key={service.id} service={service} />
           ))}
-        </motion.div>
-      </div>
-    </section>
+        </div>
+
+        {/* شريط الأدوات أسفل الخدمات */}
+        <div className="overflow-hidden mt-16 py-6">
+          <motion.div
+            className="flex gap-16"
+            animate={{
+              x: ["0%", "-150%"],
+            }}
+            transition={{
+              duration: 100,
+              ease: "linear",
+              repeat: Infinity,
+            }}
+            style={{ width: "max-content" }}
+          >
+            {[...tools, ...tools].map((tool, idx) => (
+              <img
+                key={idx}
+                src={tool.src}
+                alt={tool.alt}
+                className="h-16 w-auto object-contain filter brightness-0 invert"
+              />
+            ))}
+          </motion.div>
+        </div>
+      </section>
+    </div>
   );
 };
 

@@ -75,9 +75,8 @@ body {
   display: inline-block;
   animation: none;
   transition: all 0.3s ease;
-  color: #000; /* لون النص أسود */
+  color: #fff; /* لون النص أسود */
 }
-
 .flicker-hover:hover span {
   animation: neon-flicker-black 1.5s infinite;
 }
@@ -102,6 +101,40 @@ body {
   animation-delay: 0.35s;
 }
 .flicker-hover:hover span:nth-child(7) {
+  animation-delay: 0.45s;
+}
+
+.flicker-hover2 span {
+  display: inline-block;
+  animation: none;
+  transition: all 0.3s ease;
+  color: #000; /* لون النص أسود */
+}
+
+.flicker-hover2:hover span {
+  animation: neon-flicker-black 1.5s infinite;
+}
+
+/* تأخيرات للحروف للنص الأسود */
+.flicker-hover2:hover span:nth-child(1) {
+  animation-delay: 0.1s;
+}
+.flicker-hover2:hover span:nth-child(2) {
+  animation-delay: 0.3s;
+}
+.flicker-hover2:hover span:nth-child(3) {
+  animation-delay: 0.15s;
+}
+.flicker-hover2:hover span:nth-child(4) {
+  animation-delay: 0.4s;
+}
+.flicker-hover2:hover span:nth-child(5) {
+  animation-delay: 0.25s;
+}
+.flicker-hover2:hover span:nth-child(6) {
+  animation-delay: 0.35s;
+}
+.flicker-hover2:hover span:nth-child(7) {
   animation-delay: 0.45s;
 }
 

@@ -3,9 +3,9 @@ import videoSrc from "../../assets/videoSrc.mp4";
 import poster from "../../assets/poster2.png";
 
 const textLines = [
-  "We are a passionate team dedicated to delivering top-notch digital ",
-  "solutions that drive success and innovation.Our expertise spans",
-  "web development, UI/UX design, app development, and more.",
+  "We are a passionate team dedicated to delivering top-notch digital solutions that drive success",
+  "  and innovation.Our expertise spans web development, UI/UX design, app development,",
+  " and more.",
 ];
 
 const containerVariants = {
@@ -47,12 +47,12 @@ const videoBoxVariants: Variants = {
 
 const AboutUs = () => {
   return (
-    <section className="max-w-7xl mx-auto px-4 py-16" id="about-us">
+    <section className="w-[90%] mx-auto px-4 py-16" id="about-us">
       <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-8">
         {/* Left side */}
         <div className="md:w-1/2">
           <motion.h2
-            className="text-4xl font-bold mb-6 text-left"
+            className="text-4xl font-bold mb-6 text-left text-[#53ADE3]"
             variants={titleVariants}
             initial="hidden"
             whileInView="visible"
@@ -62,7 +62,7 @@ const AboutUs = () => {
           </motion.h2>
 
           <motion.div
-            className="text-gray-700 text-sm leading-relaxed text-left sm:text-3xl space-y-3"
+            className="text-white text-sm leading-relaxed text-left sm:text-3xl space-y-3 font-sans font-normal"
             variants={containerVariants}
             initial="hidden"
             whileInView="visible"

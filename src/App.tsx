@@ -33,8 +33,7 @@ const App = () => {
         minHeight: "100vh",
         overflowX: "hidden",
         position: "relative",
-        background:
-          "radial-gradient(circle,rgba(1, 8, 31, 1) 25%, rgba(166, 224, 216, 1) 100%)",
+        background: "radial-gradient(circle, #000101 50%, #0e3555 100%)",
       }}
     >
       <AnimatePresence mode="wait">
@@ -54,9 +53,20 @@ const App = () => {
             onAnimationComplete={() => setStage("preloaderRise")}
             style={preloaderStyle}
           >
+            <style>
+              {`
+          @font-face {
+            font-family: "TESLA";
+            src: url("/fonts/TESLA.ttf") format("truetype");
+            font-weight: 400;
+            font-style: normal;
+            font-display: swap;
+          }
+        `}
+            </style>
             <span
-              className="shimmer-effect text-[#7FCEC4] text-6xl sm:text-7xl md:text-8xl font-extrabold"
-              style={{ letterSpacing: "0.2em" }}
+              className="shimmer-effect text-[#fff] text-6xl sm:text-7xl md:text-8xl font-extrabold "
+              style={{ letterSpacing: "0.2em", fontFamily: "TESLA" }}
             >
               RELIX
             </span>
@@ -71,9 +81,20 @@ const App = () => {
             onAnimationComplete={() => setStage("mainMoveUp")}
             style={preloaderStyle}
           >
+            <style>
+              {`
+          @font-face {
+            font-family: "TESLA";
+            src: url("/fonts/TESLA.ttf") format("truetype");
+            font-weight: 400;
+            font-style: normal;
+            font-display: swap;
+          }
+        `}
+            </style>
             <span
-              className="shimmer-effect text-[#7FCEC4] text-6xl sm:text-7xl md:text-8xl font-extrabold"
-              style={{ letterSpacing: "0.2em" }}
+              className="shimmer-effect text-[#fff] text-6xl sm:text-7xl md:text-8xl font-extrabold"
+              style={{ letterSpacing: "0.2em", fontFamily: "TESLA" }}
             >
               RELIX
             </span>
@@ -275,9 +296,9 @@ const App = () => {
                 top: "24px",
                 left: "20px",
                 zIndex: 0,
-                color: "black",
+                color: "white",
                 backdropFilter: "blur(24px)",
-                border: "1px solid #000",
+                border: "2px solid #fff",
                 borderRadius: "8px",
                 padding: "8px 16px",
                 cursor: "pointer",
@@ -321,7 +342,7 @@ const App = () => {
 const preloaderStyle = {
   position: "fixed" as const,
   inset: 0,
-  backgroundColor: "#01081F",
+  backgroundColor: "#000101",
   display: "flex",
   justifyContent: "center",
   alignItems: "center",
@@ -335,8 +356,7 @@ const preloaderStyle = {
 const mainContainerStyle = {
   position: "absolute" as const,
   inset: 0,
-  background:
-    "linear-gradient(150deg, rgba(127, 206, 196, 1) 18%, rgba(63, 106, 113, 1) 64%, rgba(1, 8, 31, 1) 92%)",
+  background: "#000101",
   display: "flex",
   justifyContent: "center",
   alignItems: "center",

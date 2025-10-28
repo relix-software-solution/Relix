@@ -68,44 +68,52 @@ export function Preloader({ onFinish }: { onFinish: () => void }) {
   }, [onFinish]);
 
   return (
-    <div className="fixed inset-0 bg-[#01081F] flex items-center justify-center z-[9999]">
-      {/* Logo */}
-      <div className="flex space-x-2">
-        {"RELIX".split("").map((char, index) => {
-          const delay = Math.random() * 2;
-          return (
-            <motion.span
-              key={`relix-char-${index}`}
-              className="text-[#7FCEC4] text-6xl sm:text-7xl md:text-8xl font-extrabold tracking-widest"
-              initial={{ opacity: 0, scale: 0.7 }}
-              animate={
-                isFlickering
-                  ? { opacity: [0, 1, 0.6, 1], scale: 0.7 }
-                  : { opacity: 1, scale: 1 }
-              }
-              transition={
-                isFlickering
-                  ? {
-                      delay,
-                      duration: 0.3,
-                      ease: "easeInOut",
-                      repeat: Infinity,
-                      repeatType: "mirror",
-                    }
-                  : {
-                      duration: 1.5,
-                      ease: [0.85, 0, 0.15, 1],
-                    }
-              }
-            >
-              {char}
-            </motion.span>
-          );
-        })}
+    <div className="fixed inset-0 bg-[#000101] flex items-center justify-center z-[9999] font-tesla">
+      {/* تعريف الخط داخل الـ style */}
+      <style>
+        {`
+          @font-face {
+            font-family: "TESLA";
+            src: url("/fonts/TESLA.ttf") format("truetype");
+            font-weight: 400;
+            font-style: normal;
+            font-display: swap;
+          }
+        `}
+      </style>
+      <div className="flex space-x-2" style={{ fontFamily: "TESLA" }}>
+        {"RELIX".split("").map((char, index) => (
+          <motion.span
+            key={index}
+            className="text-[#fff] text-6xl sm:text-7xl md:text-8xl font-extrabold tracking-widest"
+            initial={{ opacity: 0, scale: 0.7 }}
+            animate={
+              isFlickering
+                ? { opacity: [0, 1, 0.6, 1], scale: 0.7 }
+                : { opacity: 1, scale: 1 }
+            }
+            transition={
+              isFlickering
+                ? {
+                    delay: Math.random() * 2,
+                    duration: 0.3,
+                    ease: "easeInOut",
+                    repeat: Infinity,
+                    repeatType: "mirror",
+                  }
+                : {
+                    duration: 1.5,
+                    ease: [0.85, 0, 0.15, 1],
+                  }
+            }
+          >
+            {char}
+          </motion.span>
+        ))}
       </div>
 
       {/* Progress Counter */}
-      <div className="absolute bottom-6 right-8 text-[#7FCEC4] text-5xl sm:text-6xl font-extrabold font-mono tracking-wider opacity-95">
+      <div className="absolute bottom-6 right-8 text-[#fff] text-5xl sm:text-6xl font-extrabold font-mono tracking-wider opacity-95">
         {Math.floor(progress)}%
       </div>
     </div>

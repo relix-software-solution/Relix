@@ -3,23 +3,26 @@ import {
   FaWhatsapp,
   FaTelegramPlane,
   FaEnvelope,
+  FaFacebook,
+  FaInstagram,
+  FaLinkedin,
 } from "react-icons/fa";
 import "../../index.css";
-import spaceVideo from "../../assets/spaceVideo.mp4";
-import poster from "../../assets/poster1.png";
+import spaceVideo from "../../assets/test.mp4";
+// import poster from "../../assets/poster1.png";
 import { RotatingText } from "../../components/RotatingText";
 import { Projects } from "./Projects";
 import Services from "./Services";
 import AboutUs from "./AboutUs";
 import Contact from "./Contact";
-import { easeOut, motion, type Variants } from "framer-motion";
+import { motion, easeOut, type Variants } from "framer-motion";
 import Navbar from "./Navbar";
 import { useState } from "react";
 import { AboutUsPage } from "../AboutUS/AboutUsPage";
 
 type MainPageProps = {
   onOpenProject: (url: string) => void;
-  onNavigate: (page: string) => void; // ← هذا مطلوب
+  onNavigate: (page: string) => void;
 };
 
 export function MainPage({ onOpenProject, onNavigate }: MainPageProps) {
@@ -36,112 +39,108 @@ export function MainPage({ onOpenProject, onNavigate }: MainPageProps) {
 
   return (
     <>
-      <Navbar onNavigate={(page) => onNavigate(page)} />
+      <Navbar onNavigate={onNavigate} />
 
-      <div className="h-full w-full p-4  ">
+      <div className="w-full h-full ">
         {currentPage === "main" && (
           <>
-            {/* Hero Section */}
-            <div
+            {/* ================= HERO SECTION ================= */}
+            <section
               id="home"
-              className="max-w-7xl w-full mx-auto mt-20 overflow-hidden rounded-[16px] lg:rounded-[30px] relative h-[30vh] sm:h-[50vh] lg:h-[80vh]"
+              className="relative w-full h-screen overflow-hidden "
             >
-              {/* Social Icons vertical */}
-              <div className="absolute right-4 top-1/2 -translate-y-1/2 z-[10] hidden md:flex flex-col gap-3 p-3 bg-white/10 backdrop-blur-md border border-white/20 rounded-[16px]">
-                <a
-                  href="https://wa.me/963953670264"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <FaWhatsapp className="text-white w-6 h-6 hover:text-green-400 transition-colors" />
-                </a>
-                <a
-                  href="https://github.com/MoShero-13"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <FaGithub className="text-white w-6 h-6 hover:text-purple-400 transition-colors" />
-                </a>
-                <a
-                  href="https://t.me/+963953670264"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <FaTelegramPlane className="text-white w-6 h-6 hover:text-sky-400 transition-colors" />
-                </a>
-                <a
-                  href="mailto:mo3206213@gmail.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <FaEnvelope className="text-white w-6 h-6 hover:text-red-400 transition-colors" />
-                </a>
-              </div>
+              {/* Background Video */}
+              <video
+                src={spaceVideo}
+                autoPlay
+                muted
+                loop
+                playsInline
+                className="absolute inset-0 w-full h-full object-cover"
+              />
 
-              {/* Video Section */}
-              <div className="hidden sm:block w-full h-full">
-                <svg
-                  width="100%"
-                  height="100%"
-                  viewBox="0 0 1000 500"
-                  preserveAspectRatio="none"
-                  className="absolute top-0 left-0 z-0"
-                >
-                  <defs>
-                    <clipPath id="clipBox" clipPathUnits="objectBoundingBox">
-                      <path d="M 0.016 0 Q 0 0 0 0.032 V 0.968 Q 0 1 0.016 1 H 0.684 Q 0.7 1 0.7 0.968 V 0.86 Q 0.7 0.828 0.716 0.828 H 0.984 Q 1 0.828 1 0.796 V 0.032 Q 1 0 0.984 0 H 0.016 Z" />
-                    </clipPath>
-                  </defs>
+              {/* Dark Gradient Overlay */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent" />
 
-                  <foreignObject
-                    width="100%"
-                    height="100%"
-                    clipPath="url(#clipBox)"
-                    style={{ zIndex: 1 }}
-                  >
-                    <video
-                      src={spaceVideo}
-                      poster={poster}
-                      autoPlay
-                      muted
-                      loop
-                      playsInline
-                      className="w-full h-full object-cover"
-                    />
-                  </foreignObject>
-
-                  <foreignObject
-                    width="100%"
-                    height="100%"
-                    clipPath="url(#clipBox)"
-                    style={{ zIndex: 2 }}
-                  >
-                    <div className="w-full h-full bg-gradient-to-t from-black to-transparent" />
-                  </foreignObject>
-                </svg>
-              </div>
-
-              <div className="sm:hidden w-full h-full">
-                <video
-                  src={spaceVideo}
-                  autoPlay
-                  muted
-                  loop
-                  playsInline
-                  className="w-full h-full object-cover rounded-[16px]"
+              {/* Social Icons */}
+              <div className="absolute right-4 top-1/2 -translate-y-1/2 z-10 hidden md:flex flex-col gap-3 p-3 bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl">
+                <SocialIcon
+                  href="https://www.facebook.com/people/Relix-Software-Solutions/61580505101436/"
+                  Icon={FaFacebook}
+                  color="hover:text-blue-500"
                 />
-                <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-t from-black to-transparent" />
+                <SocialIcon
+                  href="https://www.instagram.com/relix.software.solutions/"
+                  Icon={FaInstagram}
+                  color="hover:text-pink-500"
+                />
+                <SocialIcon
+                  href="https://www.linkedin.com/company/relix-software-solutions/"
+                  Icon={FaLinkedin}
+                  color="hover:text-sky-600"
+                />
+                <SocialIcon
+                  href="https://github.com/relix-software-solution"
+                  Icon={FaGithub}
+                  color="hover:text-gray-300"
+                />
+                <SocialIcon
+                  href="https://wa.me/963953670264"
+                  Icon={FaWhatsapp}
+                  color="hover:text-green-400"
+                />
+                <SocialIcon
+                  href="https://t.me/MohammadShero"
+                  Icon={FaTelegramPlane}
+                  color="hover:text-sky-400"
+                />
+                <SocialIcon
+                  href="mailto:mo3206213@gmail.com"
+                  Icon={FaEnvelope}
+                  color="hover:text-red-400"
+                />
               </div>
+
+              {/* Text Overlay */}
+              <div className="absolute z-20 bottom-8 left-6 sm:left-[5%] text-white text-left">
+                <motion.h1
+                  className="text-3xl sm:text-5xl font-extrabold leading-tight"
+                  initial="hidden"
+                  animate="visible"
+                  variants={textVariants}
+                  custom={0}
+                >
+                  We craft digital
+                </motion.h1>
+
+                <motion.h1
+                  className="text-3xl sm:text-5xl font-extrabold leading-tight mb-4"
+                  initial="hidden"
+                  animate="visible"
+                  variants={textVariants}
+                  custom={1}
+                >
+                  experiences
+                </motion.h1>
+
+                <RotatingText
+                  texts={[
+                    "Web Development",
+                    "App Development",
+                    "UI & UX Design",
+                  ]}
+                  interval={2500}
+                />
+              </div>
+
               {/* CTA Button */}
-              <div className="hidden md:flex absolute z-[1] bottom-0 right-0 w-[29%] h-[15%] flex items-center justify-center gap-2 px-4 py-2 sm:rounded-[16px] rounded-[8px] backdrop-blur-md bg-white/10 border border-black/30 text-white shadow-lg flicker-hover-white cursor-pointer">
-                <span className="text-[10px] sm:text-base font-medium">
-                  {"Discover\u00A0more".split("").map((char, i) => (
-                    <span key={i}>{char}</span>
-                  ))}
+              <div className="hidden md:flex absolute z-20 bottom-12 right-[5%] items-center gap-2 px-4 py-2 rounded-xl backdrop-blur-md bg-white/10 border border-white/30 text-white cursor-pointer transition-all hover:bg-white/20">
+                <span className="text-sm sm:text-base font-medium">
+                  Discover more
                 </span>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  className="w-4 h-4 sm:w-5 sm:h-5"
+                  className="w-5 h-5"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
@@ -154,39 +153,9 @@ export function MainPage({ onOpenProject, onNavigate }: MainPageProps) {
                   />
                 </svg>
               </div>
+            </section>
 
-              {/* Text Overlay */}
-              <div className="absolute z-[3] bottom-0 sm:bottom-4 lg:bottom-8 left-[5%] text-white text-left">
-                <motion.h1
-                  className="text-2xl sm:text-4xl font-extrabold leading-tight"
-                  initial="hidden"
-                  animate="visible"
-                  variants={textVariants}
-                >
-                  We craft digital
-                </motion.h1>
-
-                <motion.h1
-                  className="text-2xl sm:text-4xl font-extrabold leading-tight mb-4"
-                  initial="hidden"
-                  animate="visible"
-                  variants={textVariants}
-                  transition={{ delay: 1, duration: 0.6, ease: "easeOut" }}
-                >
-                  experiences
-                </motion.h1>
-
-                <RotatingText
-                  texts={[
-                    "Web\u00A0Development",
-                    "App\u00A0Development",
-                    "UI\u00A0&\u00A0UX\u00A0Design",
-                  ]}
-                  interval={2500}
-                />
-              </div>
-            </div>
-
+            {/* ================= OTHER SECTIONS ================= */}
             <Projects onOpenProject={onOpenProject} />
             <Services />
             <AboutUs />
@@ -197,5 +166,25 @@ export function MainPage({ onOpenProject, onNavigate }: MainPageProps) {
         {currentPage === "about" && <AboutUsPage />}
       </div>
     </>
+  );
+}
+
+/* -------- Social Icon Component -------- */
+type SocialIconProps = {
+  href: string;
+  Icon: React.ComponentType<{ className?: string }>;
+  color: string; // هنا تمرّر "hover:text-green-400"
+};
+
+function SocialIcon({ href, Icon, color }: SocialIconProps) {
+  return (
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      className={`text-white transition-colors ${color}`}
+    >
+      <Icon className="w-6 h-6" />
+    </a>
   );
 }
