@@ -267,7 +267,7 @@ const App = () => {
               position: "absolute",
               inset: 0,
               zIndex: 2,
-              backgroundColor: "#000",
+              backgroundColor: "#fff",
               borderRadius: "24px",
             }}
           >
@@ -316,7 +316,7 @@ const App = () => {
                 position: "absolute",
                 inset: 0,
                 zIndex: 2,
-                backgroundColor: "#000",
+                backgroundColor: "#fff",
                 borderRadius: "24px",
               }}
             >

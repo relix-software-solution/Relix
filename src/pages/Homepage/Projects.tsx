@@ -11,14 +11,14 @@ const projectsData = [
     title: "Al-Gota",
     imgSrc: P1,
     description: "Al-Gota Food Company.",
-    url: "https://algota.com",
+    url: "http://test.algota.com",
   },
   {
     id: 2,
     title: "Al-Omran",
     imgSrc: P2,
     description: "Al-Omran Real Estate Company.",
-    url: "https://alomran.sy",
+    url: "https://al-omran-ivory.vercel.app/",
   },
   {
     id: 3,
